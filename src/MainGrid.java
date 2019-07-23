@@ -106,7 +106,7 @@ public class MainGrid extends Application
 
 
       //creating a scene and putting it into a stage
-      Scene scene = new Scene(gridPane, 500, 500);
+      Scene scene = new Scene(gridPane, 1400, 850);
       primaryStage.setTitle("Music Box");
       primaryStage.setScene(scene);
       primaryStage.show();
