@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import java.util.ArrayList;
 /**
  * @author ninez
  */
@@ -29,6 +30,8 @@ public class MainGrid extends Application
    protected Button btExit = new Button("Exit");
    protected Button btSearch = new Button("Search");
    private TextField musicBox = new TextField();
+   
+   private ArrayList<Song> dataBase;
 
    @Override
    public void start (Stage primaryStage)
@@ -89,20 +92,20 @@ public class MainGrid extends Application
       stRating.setAlignment(Pos.BOTTOM_RIGHT);
       stQuality.setAlignment(Pos.BOTTOM_RIGHT);
       stFileExtension.setAlignment(Pos.BOTTOM_RIGHT);
-      stID.setEditable(false);
-      stYear.setEditable(false);
-      stAlbum.setEditable(false);
-      stTime.setEditable(false);
-      stRecordLabel.setEditable(false);
-      stSales.setEditable(false);
-      stPrice.setEditable(false);
-      stRating.setEditable(false);
-      stQuality.setEditable(false);
+//      stID.setEditable(false);
+//      stYear.setEditable(false);
+//      stAlbum.setEditable(false);
+//      stTime.setEditable(false);
+//      stRecordLabel.setEditable(false);
+//      stSales.setEditable(false);
+//      stPrice.setEditable(false);
+//      stRating.setEditable(false);
+//      stQuality.setEditable(false);
       GridPane.setHalignment(btSearch, HPos.RIGHT);
       GridPane.setHalignment(btExit, HPos.RIGHT);
 
       //process event
-      btSearch.setOnAction(e -> searchConvertion());
+      btSearch.setOnAction(e -> mod());
 
 
       //creating a scene and putting it into a stage
@@ -127,6 +130,8 @@ public class MainGrid extends Application
       double price = Double.parseDouble(stPrice.getText());
       double rating = Double.parseDouble(stRating.getText());
       double quality = Double.parseDouble(stQuality.getText());
+      
+       System.out.println("Hello world");
 
 //creating a search object
 
@@ -139,6 +144,50 @@ public class MainGrid extends Application
       //stPrice.setText(String.format("%.2f", price.getPrice()));
       //stRating.setText(String.format("%.2f", rating.getRating()));
       //stQuality.setText(String.format("%.2f", quality.getQuality()));
+   }
+   
+   protected void mod() {
+       
+       MusicBoxOperations mbo = new MusicBoxOperations(dataBase);
+       
+      int ID = Integer.parseInt(stID.getText());
+      int year = Integer.parseInt(stYear.getText());
+      double time = Double.parseDouble(stTime.getText());
+      int sales = Integer.parseInt(stSales.getText());
+      double price = Double.parseDouble(stPrice.getText());
+      double rating = Double.parseDouble(stRating.getText());
+      double quality = Double.parseDouble(stQuality.getText());
+      
+       //System.out.println(stTitle);
+//       System.out.println(stGenre);
+//       System.out.println(stAlbum);
+//       System.out.println(stArtist);
+//       System.out.println(stRecordLabel);
+//       System.out.println(stLanguage);
+//       System.out.println(stFileExtension);
+       
+       Song song = new Song();
+       
+       song.setAlbum(stAlbum.getText());
+       song.setFileExtesion(stFileExtension.getText());
+       song.setGenre(stGenre.getText());
+       song.setID(1);
+       song.setLanguage(stLanguage.getText());
+       song.setPrice(1);
+       song.setQuality("bad");
+       song.setRating(1);
+       song.setRecordLabel(stRecordLabel.getText());
+       song.setSales(5);
+       song.setTime(5);
+       song.setYear(5);
+       
+       mbo.add(song);
+       dataBase = mbo.getWorkingList();
+       
+       System.out.println(dataBase.size());
+       
+       
+
    }
 
 
