@@ -55,13 +55,6 @@ public class MainPage extends Application
    @Override
    public void start (Stage primaryStage)
    {
-//      Button btn1 = new Button("One");
-//      Button btn2 = new Button("Two");
-//      Button btn3 = new Button("Three");
-//      Button btn4 = new Button("Four");
-//      Button btn5 = new Button("Five");
-//      Button btn6 = new Button("Six");
-//      Button btn7 = new Button("Seven");
 
       //Root pane
       BorderPane pane = new BorderPane();
@@ -276,70 +269,6 @@ public class MainPage extends Application
 
       BorderPane.setMargin(tableV, new Insets(200, 10, 10, 30));
 
-//      Scene scene = new Scene(vbox);
-//      btn7.setMaxWidth(Double.MAX_VALUE);
-//
-//      btn7.setMaxHeight(Double.MAX_VALUE);
-//      pane.setCenter(btn7);
-
-//      VBox rightPane = new VBox(btn2, btn3, btn4);
-//// or, if you prefer a FlowPane, comment out above and uncomment
-//// the two statements below
-////FlowPane rightPane = new FlowPane(Orientation.VERTICAL, 10, 10);
-////rightPane.getChildren().addAll(btn2, btn3, btn4);
-//
-//      rightPane.setAlignment(Pos.CENTER);
-//
-//      btn2.setMaxWidth(Double.MAX_VALUE);
-//
-//      btn3.setMaxWidth(Double.MAX_VALUE);
-//
-//      btn4.setMaxWidth(Double.MAX_VALUE);
-//
-//      rightPane.setSpacing(
-//              10);
-//
-//
-//      GridPane topPane = new GridPane();
-//
-//      topPane.setHgap(
-//              10);
-//      topPane.setAlignment(Pos.CENTER);
-//      ColumnConstraints col = new ColumnConstraints();
-//
-//      col.setPercentWidth(
-//              50);
-//      topPane.getColumnConstraints()
-//              .addAll(col, col);
-//      btn5.setMaxWidth(Double.MAX_VALUE);
-//
-//      btn1.setMaxWidth(Double.MAX_VALUE);
-//
-//      topPane.add(btn5,
-//                  0, 0);
-//      topPane.add(btn1,
-//                  1, 0);
-//      topPane.setMaxWidth(Double.MAX_VALUE);
-//
-//
-//      BorderPane pane = new BorderPane();
-//
-//      pane.setRight(rightPane);
-//
-//      pane.setTop(topPane);
-//
-//      btn7.setMaxWidth(Double.MAX_VALUE);
-//
-//      btn7.setMaxHeight(Double.MAX_VALUE);
-//
-//      pane.setCenter(btn7);
-//
-//// ** add all 3 nodes to BorderPane **
-//      BorderPane.setMargin(rightPane, new Insets(10));
-//      BorderPane.setMargin(topPane, new Insets(10));
-//      BorderPane.setMargin(btn7, new Insets(10));
-//      StackPane root = new StackPane();
-//      root.getChildren().addAll();
       Scene scene = new Scene(pane, 1400, 850);
 
       primaryStage.setTitle(
@@ -348,6 +277,7 @@ public class MainPage extends Application
 
       primaryStage.show();
    }
+
 
    /**
     * @param args the command line arguments
