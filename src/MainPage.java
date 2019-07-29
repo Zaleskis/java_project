@@ -63,7 +63,7 @@ public class MainPage extends Application
       //**right column with gridpane
 
       GridPane gridPaneR = new GridPane();
-      gridPaneR.setPadding(new Insets(100, 30, 10, 30));
+      gridPaneR.setPadding(new Insets(100, 30, 60, 30));
       gridPaneR.setHgap(2);
       gridPaneR.setVgap(4);
 
@@ -173,10 +173,13 @@ public class MainPage extends Application
       gridPaneR.add(stFileExtension, 1, 14);
 
       //gridpane Buttons  below the text fields
-      gridPaneR.add(btEdit, 0, 15);
-      gridPaneR.add(btSave, 1, 15);
-      gridPaneR.add(btCancel, 0, 16);
-      gridPaneR.add(btDelete, 1, 16);
+      gridPaneR.add(btAdd, 0, 15);
+      gridPaneR.add(btSearch, 1, 15);
+      gridPaneR.add(btEdit, 0, 16);
+      gridPaneR.add(btSave, 1, 16);
+      gridPaneR.add(btDelete, 0, 17);
+      gridPaneR.add(btCancel, 1, 17);
+
 
       gridPaneR.setMaxWidth(500);
 
@@ -185,6 +188,8 @@ public class MainPage extends Application
       col.setPercentWidth(40);
       gridPaneR.getColumnConstraints().addAll(col, col);
 
+      btAdd.setMaxWidth(Double.MAX_VALUE);
+      btSearch.setMaxWidth(Double.MAX_VALUE);
       btEdit.setMaxWidth(Double.MAX_VALUE);
       btSave.setMaxWidth(Double.MAX_VALUE);
       btCancel.setMaxWidth(Double.MAX_VALUE);
@@ -261,8 +266,10 @@ public class MainPage extends Application
 
       VBox tableV = new VBox(tableView);
 
-      tableV.setMaxSize(900, 500);
+      tableV.setMaxSize(900, 900);
 
+
+      //linking grid, header, & tableview to the rootPane
       pane.setRight(gridPaneR);
       pane.setTop(topHeader);
       pane.setLeft(tableV);
@@ -272,7 +279,7 @@ public class MainPage extends Application
       Scene scene = new Scene(pane, 1400, 850);
 
       primaryStage.setTitle(
-              "Hello World!");
+              "Your Music Box!");
       primaryStage.setScene(scene);
 
       primaryStage.show();
