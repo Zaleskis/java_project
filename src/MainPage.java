@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -28,7 +30,17 @@ import javafx.stage.Stage;
 public class MainPage extends Application
 {
 
-   protected TableView table = new TableView();
+   private TableView<MusicInfo> music = new TableView<MusicInfo>();
+   private final ObservableList<MusicInfo> data
+           = FXCollections.observableArrayList(
+                   new MusicInfo(1, "hello", "HipHop", 2019, "Hello", "World", 3.45, "Java", 3400, 1.25, "English", 9.9, 3.29, "mp3"),
+                   new MusicInfo(2, "title", "HipHop", 2019, "Albumname", "artist", 3.45, "label", 3400, 1.25, "English", 9.9, 3.29, "mp4")
+           //            new MusicInfo("B", "X", "b@example.com"),
+           //            new MusicInfo("C", "W", "c@example.com"),
+           //            new MusicInfo("D", "Y", "d@example.com"),
+           //            new MusicInfo("E", "V", "e@example.com")
+           );
+
    protected TextField stID = new TextField();
    protected TextField stTitle = new TextField();
    protected TextField stGenre = new TextField();
@@ -206,65 +218,59 @@ public class MainPage extends Application
 
 
       //tableview left coloumn
-      TableView tableView = new TableView();
+      music.setEditable(true);
 
-      TableColumn<String, MusicInfo> column1 = new TableColumn<>("ID");
-      column1.setCellValueFactory(new PropertyValueFactory<>("id"));
+      TableColumn column1 = new TableColumn("ID");
+      column1.setCellValueFactory(new PropertyValueFactory<MusicInfo, String>("id"));
 
-      TableColumn<String, MusicInfo> column2 = new TableColumn<>("Title");
-      column2.setCellValueFactory(new PropertyValueFactory<>("title"));
+      TableColumn column2 = new TableColumn("Title");
+      column2.setCellValueFactory(new PropertyValueFactory<MusicInfo, String>("title"));
 
-      TableColumn<String, MusicInfo> column3 = new TableColumn<>("Genre");
-      column2.setCellValueFactory(new PropertyValueFactory<>("genre"));
+      TableColumn column3 = new TableColumn("Genre");
+      column3.setCellValueFactory(new PropertyValueFactory<MusicInfo, String>("genre"));
 
-      TableColumn<String, MusicInfo> column4 = new TableColumn<>("Year");
-      column2.setCellValueFactory(new PropertyValueFactory<>("year"));
+      TableColumn column4 = new TableColumn("Year");
+      column4.setCellValueFactory(new PropertyValueFactory<MusicInfo, String>("year"));
 
-      TableColumn<String, MusicInfo> column5 = new TableColumn<>("Album");
-      column2.setCellValueFactory(new PropertyValueFactory<>("album"));
+      TableColumn column5 = new TableColumn("Album");
+      column5.setCellValueFactory(new PropertyValueFactory<MusicInfo, String>("album"));
 
-      TableColumn<String, MusicInfo> column6 = new TableColumn<>("Time");
-      column2.setCellValueFactory(new PropertyValueFactory<>("time"));
+      TableColumn column6 = new TableColumn("Artist");
+      column6.setCellValueFactory(new PropertyValueFactory<MusicInfo, String>("artist"));
 
-      TableColumn<String, MusicInfo> column7 = new TableColumn<>("Record Label");
-      column2.setCellValueFactory(new PropertyValueFactory<>("recordLabel"));
+      TableColumn column7 = new TableColumn("Time");
+      column7.setCellValueFactory(new PropertyValueFactory<MusicInfo, String>("time"));
 
-      TableColumn<String, MusicInfo> column8 = new TableColumn<>("Sales");
-      column2.setCellValueFactory(new PropertyValueFactory<>("sales"));
+      TableColumn column8 = new TableColumn("Record Label");
+      column8.setCellValueFactory(new PropertyValueFactory<MusicInfo, String>("recordLabel"));
 
-      TableColumn<String, MusicInfo> column9 = new TableColumn<>("Price");
-      column2.setCellValueFactory(new PropertyValueFactory<>("price"));
+      TableColumn column9 = new TableColumn("Sales");
+      column9.setCellValueFactory(new PropertyValueFactory<MusicInfo, String>("sales"));
 
-      TableColumn<String, MusicInfo> column10 = new TableColumn<>("Language");
-      column2.setCellValueFactory(new PropertyValueFactory<>("language"));
+      TableColumn column10 = new TableColumn("Price");
+      column10.setCellValueFactory(new PropertyValueFactory<MusicInfo, String>("price"));
 
-      TableColumn<String, MusicInfo> column11 = new TableColumn<>("Rating");
-      column2.setCellValueFactory(new PropertyValueFactory<>("rating"));
+      TableColumn column11 = new TableColumn("Language");
+      column11.setCellValueFactory(new PropertyValueFactory<MusicInfo, String>("language"));
 
-      TableColumn<String, MusicInfo> column12 = new TableColumn<>("Quality");
-      column2.setCellValueFactory(new PropertyValueFactory<>("quality"));
+      TableColumn column12 = new TableColumn("Rating");
+      column12.setCellValueFactory(new PropertyValueFactory<MusicInfo, String>("rating"));
 
-      TableColumn<String, MusicInfo> column13 = new TableColumn<>("File Extension");
-      column2.setCellValueFactory(new PropertyValueFactory<>("fileExtension"));
+      TableColumn column13 = new TableColumn("Quality");
+      column13.setCellValueFactory(new PropertyValueFactory<MusicInfo, String>("quality"));
 
-      tableView.getColumns().add(column1);
-      tableView.getColumns().add(column2);
-      tableView.getColumns().add(column3);
-      tableView.getColumns().add(column4);
-      tableView.getColumns().add(column5);
-      tableView.getColumns().add(column6);
-      tableView.getColumns().add(column7);
-      tableView.getColumns().add(column8);
-      tableView.getColumns().add(column9);
-      tableView.getColumns().add(column10);
-      tableView.getColumns().add(column11);
-      tableView.getColumns().add(column12);
-      tableView.getColumns().add(column13);
+      TableColumn column14 = new TableColumn("File Extension");
+      column14.setCellValueFactory(new PropertyValueFactory<MusicInfo, String>("fileExtension"));
+
+
+      music.setItems(data);
+      music.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7, column8, column9, column10, column11, column12, column13, column14);
+
 
 //      tableView.getItems().add(new MusicInfo(1, ""));
 //      tableView.getItems().add(new MusicInfo("Jane", "Deer"));
 
-      VBox tableV = new VBox(tableView);
+      VBox tableV = new VBox(music);
 
       tableV.setMaxSize(900, 900);
 
