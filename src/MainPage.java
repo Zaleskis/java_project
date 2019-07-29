@@ -10,12 +10,15 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 /**
@@ -204,22 +207,81 @@ public class MainPage extends Application
       topHeader.setPadding(new Insets(50, 0, 0, 0));
 
 
+      //tableview left coloumn
+      TableView tableView = new TableView();
 
-      //top right
-      //left column
+      TableColumn<String, MusicInfo> column1 = new TableColumn<>("ID");
+      column1.setCellValueFactory(new PropertyValueFactory<>("id"));
 
-//
+      TableColumn<String, MusicInfo> column2 = new TableColumn<>("Title");
+      column2.setCellValueFactory(new PropertyValueFactory<>("title"));
+
+      TableColumn<String, MusicInfo> column3 = new TableColumn<>("Genre");
+      column2.setCellValueFactory(new PropertyValueFactory<>("genre"));
+
+      TableColumn<String, MusicInfo> column4 = new TableColumn<>("Year");
+      column2.setCellValueFactory(new PropertyValueFactory<>("year"));
+
+      TableColumn<String, MusicInfo> column5 = new TableColumn<>("Album");
+      column2.setCellValueFactory(new PropertyValueFactory<>("album"));
+
+      TableColumn<String, MusicInfo> column6 = new TableColumn<>("Time");
+      column2.setCellValueFactory(new PropertyValueFactory<>("time"));
+
+      TableColumn<String, MusicInfo> column7 = new TableColumn<>("Record Label");
+      column2.setCellValueFactory(new PropertyValueFactory<>("recordLabel"));
+
+      TableColumn<String, MusicInfo> column8 = new TableColumn<>("Sales");
+      column2.setCellValueFactory(new PropertyValueFactory<>("sales"));
+
+      TableColumn<String, MusicInfo> column9 = new TableColumn<>("Price");
+      column2.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+      TableColumn<String, MusicInfo> column10 = new TableColumn<>("Language");
+      column2.setCellValueFactory(new PropertyValueFactory<>("language"));
+
+      TableColumn<String, MusicInfo> column11 = new TableColumn<>("Rating");
+      column2.setCellValueFactory(new PropertyValueFactory<>("rating"));
+
+      TableColumn<String, MusicInfo> column12 = new TableColumn<>("Quality");
+      column2.setCellValueFactory(new PropertyValueFactory<>("quality"));
+
+      TableColumn<String, MusicInfo> column13 = new TableColumn<>("File Extension");
+      column2.setCellValueFactory(new PropertyValueFactory<>("fileExtension"));
+
+      tableView.getColumns().add(column1);
+      tableView.getColumns().add(column2);
+      tableView.getColumns().add(column3);
+      tableView.getColumns().add(column4);
+      tableView.getColumns().add(column5);
+      tableView.getColumns().add(column6);
+      tableView.getColumns().add(column7);
+      tableView.getColumns().add(column8);
+      tableView.getColumns().add(column9);
+      tableView.getColumns().add(column10);
+      tableView.getColumns().add(column11);
+      tableView.getColumns().add(column12);
+      tableView.getColumns().add(column13);
+
+//      tableView.getItems().add(new MusicInfo(1, ""));
+//      tableView.getItems().add(new MusicInfo("Jane", "Deer"));
+
+      VBox tableV = new VBox(tableView);
+
+      tableV.setMaxSize(900, 500);
 
       pane.setRight(gridPaneR);
       pane.setTop(topHeader);
+      pane.setLeft(tableV);
 
+      BorderPane.setMargin(tableV, new Insets(200, 10, 10, 30));
+
+//      Scene scene = new Scene(vbox);
 //      btn7.setMaxWidth(Double.MAX_VALUE);
 //
 //      btn7.setMaxHeight(Double.MAX_VALUE);
-
 //      pane.setCenter(btn7);
 
-// ** right column **
 //      VBox rightPane = new VBox(btn2, btn3, btn4);
 //// or, if you prefer a FlowPane, comment out above and uncomment
 //// the two statements below
@@ -237,7 +299,7 @@ public class MainPage extends Application
 //      rightPane.setSpacing(
 //              10);
 //
-//// ** top row **
+//
 //      GridPane topPane = new GridPane();
 //
 //      topPane.setHgap(
@@ -259,7 +321,7 @@ public class MainPage extends Application
 //                  1, 0);
 //      topPane.setMaxWidth(Double.MAX_VALUE);
 //
-//// ** centre ***
+//
 //      BorderPane pane = new BorderPane();
 //
 //      pane.setRight(rightPane);
