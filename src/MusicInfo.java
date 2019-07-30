@@ -3,30 +3,30 @@
  */
 public class MusicInfo
 {
-   private int id;
+   private String id;
    private String title;
-   private String Genre;
-   private int year;
+   private String genre;
+   private String year;
    private String album;
    private String artist;
-   private double time;
+   private String time;
    private String recordLabel;
-   private int sales;
-   private double price;
+   private String sales;
+   private String price;
    private String language;
-   private double rating;
-   private double quality;
+   private String rating;
+   private String quality;
    private String fileExtension;
 
    public MusicInfo ()
    {
    }
 
-   public MusicInfo (int id, String title, String Genre, int year, String album, String artist, double time, String recordLabel, int sales, double price, String language, double rating, double quality, String fileExtension)
+   public MusicInfo (String id, String title, String genre, String year, String album, String artist, String time, String recordLabel, String sales, String price, String language, String rating, String quality, String fileExtension)
    {
       this.id = id;
       this.title = title;
-      this.Genre = Genre;
+      this.genre = genre;
       this.year = year;
       this.album = album;
       this.artist = artist;
@@ -40,147 +40,116 @@ public class MusicInfo
       this.fileExtension = fileExtension;
    }
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
 
-   public int getId ()
-   {
-      return id;
-   }
+    public String getTitle() {
+        return title;
+    }
 
-   public void setId (int id)
-   {
-      this.id = id;
-   }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-   public String getTitle ()
-   {
-      return title;
-   }
+    public String getGenre() {
+        return genre;
+    }
 
-   public void setTitle (String title)
-   {
-      this.title = title;
-   }
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
 
-   public String getGenre ()
-   {
-      return Genre;
-   }
+    public String getYear() {
+        return year;
+    }
 
-   public void setGenre (String Genre)
-   {
-      this.Genre = Genre;
-   }
+    public void setYear(String year) {
+        this.year = year;
+    }
 
-   public int getYear ()
-   {
-      return year;
-   }
+    public String getAlbum() {
+        return album;
+    }
 
-   public void setYear (int year)
-   {
-      this.year = year;
-   }
+    public void setAlbum(String album) {
+        this.album = album;
+    }
 
-   public String getAlbum ()
-   {
-      return album;
-   }
+    public String getArtist() {
+        return artist;
+    }
 
-   public void setAlbum (String album)
-   {
-      this.album = album;
-   }
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
 
-   public String getArtist ()
-   {
-      return artist;
-   }
+    public String getTime() {
+        return time;
+    }
 
-   public void setArtist (String artist)
-   {
-      this.artist = artist;
-   }
+    public void setTime(String time) {
+        this.time = time;
+    }
 
-   public double getTime ()
-   {
-      return time;
-   }
+    public String getRecordLabel() {
+        return recordLabel;
+    }
 
-   public void setTime (double time)
-   {
-      this.time = time;
-   }
+    public void setRecordLabel(String recordLabel) {
+        this.recordLabel = recordLabel;
+    }
 
-   public String getRecordLabel ()
-   {
-      return recordLabel;
-   }
+    public String getSales() {
+        return sales;
+    }
 
-   public void setRecordLabel (String recordLabel)
-   {
-      this.recordLabel = recordLabel;
-   }
+    public void setSales(String sales) {
+        this.sales = sales;
+    }
 
-   public int getSales ()
-   {
-      return sales;
-   }
+    public String getPrice() {
+        return price;
+    }
 
-   public void setSales (int sales)
-   {
-      this.sales = sales;
-   }
+    public void setPrice(String price) {
+        this.price = price;
+    }
 
-   public double getPrice ()
-   {
-      return price;
-   }
+    public String getLanguage() {
+        return language;
+    }
 
-   public void setPrice (double price)
-   {
-      this.price = price;
-   }
+    public void setLanguage(String language) {
+        this.language = language;
+    }
 
-   public String getLanguage ()
-   {
-      return language;
-   }
+    public String getRating() {
+        return rating;
+    }
 
-   public void setLanguage (String language)
-   {
-      this.language = language;
-   }
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
 
-   public double getRating ()
-   {
-      return rating;
-   }
+    public String getQuality() {
+        return quality;
+    }
 
-   public void setRating (double rating)
-   {
-      this.rating = rating;
-   }
+    public void setQuality(String quality) {
+        this.quality = quality;
+    }
 
-   public double getQuality ()
-   {
-      return quality;
-   }
+    public String getFileExtension() {
+        return fileExtension;
+    }
 
-   public void setQuality (double quality)
-   {
-      this.quality = quality;
-   }
-
-   public String getFileExtension ()
-   {
-      return fileExtension;
-   }
-
-   public void setFileExtension (String fileExtension)
-   {
-      this.fileExtension = fileExtension;
-   }
-
+    public void setFileExtension(String fileExtension) {
+        this.fileExtension = fileExtension;
+    }
 
 }

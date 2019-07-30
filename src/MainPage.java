@@ -23,6 +23,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
 /**
  *
  * @author Hailey
@@ -31,10 +32,10 @@ public class MainPage extends Application
 {
 
    private TableView<MusicInfo> music = new TableView<MusicInfo>();
-   private final ObservableList<MusicInfo> data
+   private ObservableList<MusicInfo> data
            = FXCollections.observableArrayList(
-                   new MusicInfo(1, "hello", "HipHop", 2019, "Hello", "World", 3.45, "Java", 3400, 1.25, "English", 9.9, 3.29, "mp3"),
-                   new MusicInfo(2, "title", "HipHop", 2019, "Albumname", "artist", 3.45, "label", 3400, 1.25, "English", 9.9, 3.29, "mp4")
+                   new MusicInfo("1", "hello", "HipHop", "2019", "Hello", "World", "3.45", "Java", "3400", "1.25", "English", "9.9", "3.29", "mp3"),
+                   new MusicInfo("2", "title", "HipHop", "2019", "Albumname", "artist", "3.45", "label", "3400", "1.25", "English", "9.9", "3.29", "mp3")
            //            new MusicInfo("B", "X", "b@example.com"),
            //            new MusicInfo("C", "W", "c@example.com"),
            //            new MusicInfo("D", "Y", "d@example.com"),
@@ -55,13 +56,14 @@ public class MainPage extends Application
    protected TextField stRating = new TextField();
    protected TextField stQuality = new TextField();
    protected TextField stFileExtension = new TextField();
-   protected Button btExit = new Button("Exit");
+   //protected Button btExit = new Button("Exit");
    protected Button btSearch = new Button("Search");
    protected Button btAdd = new Button("Add");
-   protected Button btEdit = new Button("Edit");
+   //protected Button btEdit = new Button("Edit");
+   protected Button btUpdate = new Button("Update");
    protected Button btDelete = new Button("Delete");
 //   protected Button btCancel = new Button("Cancel");
-   protected Button btSave = new Button("Save");
+   //protected Button btSave = new Button("Save");
    private TextField musicBox = new TextField();
 
    @Override
@@ -187,10 +189,11 @@ public class MainPage extends Application
       //gridpane Buttons  below the text fields
       gridPaneR.add(btAdd, 0, 15);
       gridPaneR.add(btSearch, 1, 15);
-      gridPaneR.add(btEdit, 0, 16);
-      gridPaneR.add(btSave, 1, 16);
-      gridPaneR.add(btDelete, 0, 17);
-      gridPaneR.add(btExit, 1, 17);
+      gridPaneR.add(btUpdate, 0, 16);
+      //gridPaneR.add(btEdit, 0, 16);
+      //gridPaneR.add(btSave, 1, 16);
+      gridPaneR.add(btDelete, 1, 16);
+      //gridPaneR.add(btExit, 1, 17);
 
 
       gridPaneR.setMaxWidth(500);
@@ -202,9 +205,10 @@ public class MainPage extends Application
 
       btAdd.setMaxWidth(Double.MAX_VALUE);
       btSearch.setMaxWidth(Double.MAX_VALUE);
-      btEdit.setMaxWidth(Double.MAX_VALUE);
-      btSave.setMaxWidth(Double.MAX_VALUE);
-      btExit.setMaxWidth(Double.MAX_VALUE);
+      //btEdit.setMaxWidth(Double.MAX_VALUE);
+      //btSave.setMaxWidth(Double.MAX_VALUE);
+      //btExit.setMaxWidth(Double.MAX_VALUE);
+      btUpdate.setMaxWidth(Double.MAX_VALUE);
       btDelete.setMaxWidth(Double.MAX_VALUE);
 //end  of gridPane
 
@@ -279,9 +283,17 @@ public class MainPage extends Application
       pane.setRight(gridPaneR);
       pane.setTop(topHeader);
       pane.setLeft(tableV);
+      
 
       BorderPane.setMargin(tableV, new Insets(200, 10, 10, 30));
-
+      
+      btAdd.setOnAction(e -> addMusicInfo(stID.getText(), stTitle.getText(), stGenre.getText(), stYear.getText(), stAlbum.getText(), stArtist.getText(), stTime.getText(), stRecordLabel.getText(), stSales.getText(), stPrice.getText(), stLanguage.getText(), stRating.getText(), stQuality.getText(), stFileExtension.getText()));
+      btUpdate.setOnAction(e -> updateData(stID.getText(), stTitle.getText(), stGenre.getText(), stYear.getText(), stAlbum.getText(), stArtist.getText(), stTime.getText(), stRecordLabel.getText(), stSales.getText(), stPrice.getText(), stLanguage.getText(), stRating.getText(), stQuality.getText(), stFileExtension.getText()));
+      btSearch.setOnAction(e -> searchData(stTitle.getText()));
+      btDelete.setOnAction(e -> deleteMusicInfo());
+      
+      music.getSelectionModel().selectedIndexProperty().addListener((num) -> displayData());
+      
       Scene scene = new Scene(pane, 1400, 850);
 
       primaryStage.setTitle(
@@ -289,6 +301,133 @@ public class MainPage extends Application
       primaryStage.setScene(scene);
 
       primaryStage.show();
+      
+   }  
+   
+   
+   
+   public void addMusicInfo(String id, String title, String genre, String year, String album, String artist, String time, String recordLabel, String sales, String price, String language, String rating, String quality, String fileExtension) {
+       
+       if (id.isEmpty() && title.isEmpty() && genre.isEmpty() && year.isEmpty() && album.isEmpty() && artist.isEmpty() && time.isEmpty() && recordLabel.isEmpty() && sales.isEmpty() && price.isEmpty() && language.isEmpty() && rating.isEmpty() && quality.isEmpty() && fileExtension.isEmpty()) {
+       
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Must enter information to add a song");
+            alert.show();
+       
+       } else {
+           
+           MusicInfo newMusicInfo = new MusicInfo(id, title, genre, year, album, artist, time, recordLabel, sales, price, language, rating, quality, fileExtension);
+           data.add(newMusicInfo);
+           
+       }
+       
+   }
+   
+   
+   public void searchData(String title) {
+       
+       boolean songFound = false;
+       
+       for (int i = 0; i < data.size(); i++) {
+           
+           if (data.get(i).getTitle().equals(title)) {
+               
+               stID.setText(data.get(i).getId());
+               stGenre.setText(data.get(i).getGenre());
+               stYear.setText(data.get(i).getYear());
+               stAlbum.setText(data.get(i).getAlbum());
+               stArtist.setText(data.get(i).getArtist());
+               stTime.setText(data.get(i).getTime());
+               stRecordLabel.setText(data.get(i).getRecordLabel());
+               stSales.setText(data.get(i).getSales());
+               stPrice.setText(data.get(i).getPrice());
+               stLanguage.setText(data.get(i).getLanguage());
+               stRating.setText(data.get(i).getRating());
+               stQuality.setText(data.get(i).getQuality());
+               stFileExtension.setText(data.get(i).getFileExtension());
+               
+               songFound = true;
+               
+           }
+           
+       }
+       
+       if (songFound == false) {
+           
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+               alert.setTitle("Error");
+               alert.setHeaderText("Song title was not found");
+               alert.setContentText("Enter song title that is on the database");
+               alert.show();
+           
+       }
+       
+   }
+   
+   
+   public void updateData(String id, String title, String genre, String year, String album, String artist, String time, String recordLabel, String sales, String price, String language, String rating, String quality, String fileExtension) {
+       
+        int i = music.getSelectionModel().selectedIndexProperty().get();
+             
+        try {
+            data.get(i).setTitle(title);
+            //ID is unchangable 
+            data.get(i).setGenre(genre);
+            data.get(i).setYear(year);
+            data.get(i).setAlbum(album);
+            data.get(i).setArtist(artist);
+            data.get(i).setTime(time);
+            data.get(i).setRecordLabel(recordLabel);
+            data.get(i).setSales(sales);
+            data.get(i).setPrice(price);
+            data.get(i).setLanguage(language);
+            data.get(i).setRating(rating);
+            data.get(i).setQuality(quality);
+            data.get(i).setFileExtension(fileExtension);
+
+            data.set(i, data.get(i));  
+        } catch (Exception ex) {
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Must select feild to update");
+            alert.show();
+            
+        }
+       
+   }
+   
+   
+   public void deleteMusicInfo() {
+       
+       int i = music.getSelectionModel().selectedIndexProperty().get();
+      
+               
+       data.remove(i);
+
+   }
+   
+   public void displayData() {
+       
+       int i = music.getSelectionModel().selectedIndexProperty().get();
+       
+        stTitle.setText(data.get(i).getTitle());
+        stID.setText(data.get(i).getId());
+        stGenre.setText(data.get(i).getGenre());
+        stYear.setText(data.get(i).getYear());
+        stAlbum.setText(data.get(i).getAlbum());
+        stArtist.setText(data.get(i).getArtist());
+        stTime.setText(data.get(i).getTime());
+        stRecordLabel.setText(data.get(i).getRecordLabel());
+        stSales.setText(data.get(i).getSales());
+        stPrice.setText(data.get(i).getPrice());
+        stLanguage.setText(data.get(i).getLanguage());
+        stRating.setText(data.get(i).getRating());
+        stQuality.setText(data.get(i).getQuality());
+        stFileExtension.setText(data.get(i).getFileExtension());
+       
+       
    }
 
 
