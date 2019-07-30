@@ -60,7 +60,7 @@ public class MainPage extends Application
    protected Button btAdd = new Button("Add");
    protected Button btEdit = new Button("Edit");
    protected Button btDelete = new Button("Delete");
-   protected Button btCancel = new Button("Cancel");
+//   protected Button btCancel = new Button("Cancel");
    protected Button btSave = new Button("Save");
    private TextField musicBox = new TextField();
 
@@ -190,7 +190,7 @@ public class MainPage extends Application
       gridPaneR.add(btEdit, 0, 16);
       gridPaneR.add(btSave, 1, 16);
       gridPaneR.add(btDelete, 0, 17);
-      gridPaneR.add(btCancel, 1, 17);
+      gridPaneR.add(btExit, 1, 17);
 
 
       gridPaneR.setMaxWidth(500);
@@ -204,9 +204,9 @@ public class MainPage extends Application
       btSearch.setMaxWidth(Double.MAX_VALUE);
       btEdit.setMaxWidth(Double.MAX_VALUE);
       btSave.setMaxWidth(Double.MAX_VALUE);
-      btCancel.setMaxWidth(Double.MAX_VALUE);
+      btExit.setMaxWidth(Double.MAX_VALUE);
       btDelete.setMaxWidth(Double.MAX_VALUE);
-
+//end  of gridPane
 
       //**top column
       FlowPane topHeader = new FlowPane();
