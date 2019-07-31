@@ -43,10 +43,13 @@ public class MainPage extends Application
                    new MusicInfo("6", "Stay", "Electronic", "2019", "Stay", "Alessia Cara, Zedd", "4.01", "Warner Bros.", "892046", "1.25", "English", "9.3", "Good", "mp4"),
                    new MusicInfo("7", "Love Me Again", "Electronic", "2018", "John Newman", "John Newman", "3.55", "Sony", "46320", "1.25", "English", "6.7", "Poor", "mp3"),
                    new MusicInfo("8", "Mom", "Country", "2014", "Man Against the Machine", "Garth Brooks", "4.22", "Warner Bros.", "882310", "1.25", "English", "9.9", "Good", "wma")
-           //            new MusicInfo("B", "X", "b@example.com"),
-           //            new MusicInfo("C", "W", "c@example.com"),
-           //            new MusicInfo("D", "Y", "d@example.com"),
-           //            new MusicInfo("E", "V", "e@example.com")
+                   new MusicInfo("10", "Spring Waltz", "Waltz", "2019", "Spring Waltz", "Carla Bruni", "4.16", "Stone Music Entertainments", "109454", "1.25", "English", "9.0", "Excellent", "mp3"),
+                   new MusicInfo("11", "Everytime", "Indie Pop", "2017", "Roy Pablo", "Boy Pablo", "2.53", "777 Records", "36538989", "1.25", "English", "9.8", "Good", "mp3"),
+                   new MusicInfo("12", "Self Care", "Pop Rap", "2018", "Swimming", "Mac Miller", "5.45", "Warner Bros.", "141086145", "2.00", "English", "8.0", "Good", "Digital Download"),
+                   new MusicInfo("13", "Holiday", "Indie", "2019", "Thirsty", "The Black Skirts", "4.31", "YG Plus", "64576", "1.25", "Korean", "9.9", "Good", "Digital Download"),
+                   new MusicInfo("14", "I'm Not Sorry", "R&B", "2015", " I'm Not Sorrry", "DEAN feat. Eric Bellinger", "3.29", "Joombas Co Ltd & Universal Music Ltd.", "22021472", "1.50", "English", "9.4", "Fair", "Digital Download"),
+                   new MusicInfo("15", "Someone In The Crowd", "Musical", "2016", "La La Land OST", "Emma Stone, Callie Hernandez, Sonoya Mizuno & Jessica Rothe", "4.20", "Interscope Records", "68022926", "2.00", "English", "9.8", "Good", "Digital Download"),
+                   new MusicInfo("16", "Pinocchio", "Chanson", "1971", "Pinocchio", "Daniele Vidal", "3.11", "Seven Seas", "unknown", "20.52", "French", "7.5", "Poor", "LP")
            );
 
    protected TextField stID = new TextField();
@@ -398,7 +401,7 @@ public class MainPage extends Application
             
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setHeaderText("Must select feild to update");
+            alert.setHeaderText("Must select field to update");
             alert.show();
             
         }
