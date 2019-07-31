@@ -34,8 +34,15 @@ public class MainPage extends Application
    private TableView<MusicInfo> music = new TableView<MusicInfo>();
    private ObservableList<MusicInfo> data
            = FXCollections.observableArrayList(
-                   new MusicInfo("1", "hello", "HipHop", "2019", "Hello", "World", "3.45", "Java", "3400", "1.25", "English", "9.9", "3.29", "mp3"),
-                   new MusicInfo("2", "title", "HipHop", "2019", "Albumname", "artist", "3.45", "label", "3400", "1.25", "English", "9.9", "3.29", "mp3")
+                   new MusicInfo("1", "God's Country", "Country", "2019", "God's Country", "Blake Shelton", "3.27", "Warner Bros.", "154000", "1.25", "English", "9.9", "Good", "mp3"),
+                   new MusicInfo("2", "Entre Deux Mondes", "Pop", "2017", "Entre Deux Mondes", "Marc Dupre", "3.45", "L-A BE", "3400", "1.05", "French", "9.7", "Poor", "mp3"),
+                   new MusicInfo("3", "High Hopes", "Rock", "2018", "I write sins not tragedies", "Panic! At The Disco", "4.02", "Warner Bros.", "873362", "1.25", "English", "9.2", "Good", "mp4"),
+                   new MusicInfo("4", "Treat You Better", "Pop", "2016", "Illuminate", "Shawn Mendes", "3.07", "Sony", "774231", "0.90", "English", "9.9", "Fair", "mp3"),
+                   new MusicInfo("4", "Estoy Aqui", "Pop", "1995", "Pies Descalzos", "Shakira", "4.15", "Sony", "40799", "0.90", "Spanish", "8.9", "Good", "mp4"),
+                   new MusicInfo("5", "Aquarela", "MPB", "1983", "Acquarello", "Toquinho", "4.16", "Maracana", "5789", "0.75", "Portuguese", "7.7", "Fair", "wma"),
+                   new MusicInfo("6", "Stay", "Electronic", "2019", "Stay", "Alessia Cara, Zedd", "4.01", "Warner Bros.", "892046", "1.25", "English", "9.3", "Good", "mp4"),
+                   new MusicInfo("7", "Love Me Again", "Electronic", "2018", "John Newman", "John Newman", "3.55", "Sony", "46320", "1.25", "English", "6.7", "Poor", "mp3"),
+                   new MusicInfo("8", "Mom", "Country", "2014", "Man Against the Machine", "Garth Brooks", "4.22", "Warner Bros.", "882310", "1.25", "English", "9.9", "Good", "wma")
            //            new MusicInfo("B", "X", "b@example.com"),
            //            new MusicInfo("C", "W", "c@example.com"),
            //            new MusicInfo("D", "Y", "d@example.com"),
