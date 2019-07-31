@@ -42,7 +42,16 @@ public class MainPage extends Application
                    new MusicInfo("5", "Aquarela", "MPB", "1983", "Acquarello", "Toquinho", "4.16", "Maracana", "5789", "0.75", "Portuguese", "7.7", "Fair", "wma"),
                    new MusicInfo("6", "Stay", "Electronic", "2019", "Stay", "Alessia Cara, Zedd", "4.01", "Warner Bros.", "892046", "1.25", "English", "9.3", "Good", "mp4"),
                    new MusicInfo("7", "Love Me Again", "Electronic", "2018", "John Newman", "John Newman", "3.55", "Sony", "46320", "1.25", "English", "6.7", "Poor", "mp3"),
-                   new MusicInfo("8", "Mom", "Country", "2014", "Man Against the Machine", "Garth Brooks", "4.22", "Warner Bros.", "882310", "1.25", "English", "9.9", "Good", "wma")
+                   new MusicInfo("8", "Mom", "Country", "2014", "Man Against the Machine", "Garth Brooks", "4.22", "Warner Bros.", "882310", "1.25", "English", "9.9", "Good", "wma"),
+                   new MusicInfo("9", "The Boxer", "Pop", "1970", "Bridge Over Troubled Water", "Simon & Garfunkel", "5.13", "Sony", "1005435", "1.25", "English", "9.8", "Good", "mp3"),
+                   new MusicInfo("10", "Superboy and Supergirl", "Alternative", "2000", "New Standards", "Tullycraft", "2.31", "Sony", "13435", "1.00", "English", "8.4", "Good", "mp3"),
+                   new MusicInfo("11", "Can't Take my Eyes Off You", "Rock", "1967", "The Very best of Frankie Valli", "Frankie Valli", "3.23", "Warner Bros.", "108563", "1.10", "English", "9.3", "Good", "mp3"),
+                   new MusicInfo("12", "Stand by Me", "Alternative", "2016", "Songs From Final Fantasy XV", "Florence + The Machines", "4.06", "Sony", "250911", "1.00", "English", "8.9", "Good", "mp3"),
+                   new MusicInfo("13", "At Sea", "Alternative", "2007", "La La Land", "Wax Fang", "4.24", "Warner Bros.", "774231", "1.50", "English", "9.1", "Good", "mp3"),
+                   new MusicInfo("14", "Redbone", "Soul", "2016", "Awaken, My Love!", "Childish Gambino", "5.24", "Warner Bros.", "556731", "1.10", "English", "8.8", "Good", "mp3"),
+                   new MusicInfo("15", "Take Me to Church", "Alternative", "2013", "Hozier", "Hozier", "4.24", "Sony", "654532", "2.00", "English", "9.3", "Good", "mp3"),
+                   new MusicInfo("16", "Wheat Kings", "Rock", "2002", "Yer Favourites", "The Tragically Hip", "4.18", "Sony", "2010254", "1.75", "English", "9.6", "Good", "mp3")
+                   
            //            new MusicInfo("C", "W", "c@example.com"),
            //            new MusicInfo("D", "Y", "d@example.com"),
            //            new MusicInfo("E", "V", "e@example.com")
