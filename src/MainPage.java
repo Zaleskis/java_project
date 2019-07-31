@@ -49,7 +49,13 @@ public class MainPage extends Application
                    new MusicInfo("13", "Holiday", "Indie", "2019", "Thirsty", "The Black Skirts", "4.31", "YG Plus", "64576", "1.25", "Korean", "9.9", "Good", "Digital Download"),
                    new MusicInfo("14", "I'm Not Sorry", "R&B", "2015", " I'm Not Sorrry", "DEAN feat. Eric Bellinger", "3.29", "Joombas Co Ltd & Universal Music Ltd.", "22021472", "1.50", "English", "9.4", "Fair", "Digital Download"),
                    new MusicInfo("15", "Someone In The Crowd", "Musical", "2016", "La La Land OST", "Emma Stone, Callie Hernandez, Sonoya Mizuno & Jessica Rothe", "4.20", "Interscope Records", "68022926", "2.00", "English", "9.8", "Good", "Digital Download"),
-                   new MusicInfo("16", "Pinocchio", "Chanson", "1971", "Pinocchio", "Daniele Vidal", "3.11", "Seven Seas", "unknown", "20.52", "French", "7.5", "Poor", "LP")
+                   new MusicInfo("16", "Pinocchio", "Chanson", "1971", "Pinocchio", "Daniele Vidal", "3.11", "Seven Seas", "unknown", "20.52", "French", "7.5", "Poor", "LP"),
+                   new MusicInfo("17", "Perfect", "Pop", "2017", "divide", "Ed Sheeran", "4.23", "Asylum", "89,359", "2.5", "English", "9.8", "Good", "mp4"),
+                   new MusicInfo("18", "Castle on the Hill", "Pop", "2017", "divide", "Ed Sheeran", "4.21", "Asylum", "479,000", "2.0", "English", "9.6", "Fair", "mp3"),
+                   new MusicInfo("19", "Stay with Me", "Soul", "2014", "In the Lonely Hour", "Sam Smith", "2.52", "Capitol", "359,000", "2.5", "English", "8.5", "Good", "mp3"),
+                   new MusicInfo("20", "Dernière danse", "Pop", "2013", "Mini World", "Indila", "3.32","Capitol Music Group", "897009", "2.50", "French", "8.0", "Good", "mp4"),
+                   new MusicInfo("21", "A Sky Full of Stars", "EDM", "2014", "Ghost Stories", "Coldplay", "3.32","Parlophone", "654009", "1.50", "English", "7.0", "Fair", "mp3")
+
            );
 
    protected TextField stID = new TextField();
