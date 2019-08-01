@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.io.*;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,6 +32,11 @@ import javafx.stage.Stage;
 public class MainPage extends Application
 {
 
+   FileOutputStream fo;
+   FileInputStream fi;
+   ObjectOutputStream oo;
+   ObjectInputStream oi;
+
    private TableView<MusicInfo> music = new TableView<MusicInfo>();
    private ObservableList<MusicInfo> data
            = FXCollections.observableArrayList(
@@ -38,24 +44,35 @@ public class MainPage extends Application
                    new MusicInfo("2", "Entre Deux Mondes", "Pop", "2017", "Entre Deux Mondes", "Marc Dupre", "3.45", "L-A BE", "3400", "1.05", "French", "9.7", "Poor", "mp3"),
                    new MusicInfo("3", "High Hopes", "Rock", "2018", "I write sins not tragedies", "Panic! At The Disco", "4.02", "Warner Bros.", "873362", "1.25", "English", "9.2", "Good", "mp4"),
                    new MusicInfo("4", "Treat You Better", "Pop", "2016", "Illuminate", "Shawn Mendes", "3.07", "Sony", "774231", "0.90", "English", "9.9", "Fair", "mp3"),
-                   new MusicInfo("4", "Estoy Aqui", "Pop", "1995", "Pies Descalzos", "Shakira", "4.15", "Sony", "40799", "0.90", "Spanish", "8.9", "Good", "mp4"),
-                   new MusicInfo("5", "Aquarela", "MPB", "1983", "Acquarello", "Toquinho", "4.16", "Maracana", "5789", "0.75", "Portuguese", "7.7", "Fair", "wma"),
-                   new MusicInfo("6", "Stay", "Electronic", "2019", "Stay", "Alessia Cara, Zedd", "4.01", "Warner Bros.", "892046", "1.25", "English", "9.3", "Good", "mp4"),
-                   new MusicInfo("7", "Love Me Again", "Electronic", "2018", "John Newman", "John Newman", "3.55", "Sony", "46320", "1.25", "English", "6.7", "Poor", "mp3"),
-                   new MusicInfo("8", "Mom", "Country", "2014", "Man Against the Machine", "Garth Brooks", "4.22", "Warner Bros.", "882310", "1.25", "English", "9.9", "Good", "wma"),
-                   new MusicInfo("9", "The Boxer", "Pop", "1970", "Bridge Over Troubled Water", "Simon & Garfunkel", "5.13", "Sony", "1005435", "1.25", "English", "9.8", "Good", "mp3"),
-                   new MusicInfo("10", "Superboy and Supergirl", "Alternative", "2000", "New Standards", "Tullycraft", "2.31", "Sony", "13435", "1.00", "English", "8.4", "Good", "mp3"),
-                   new MusicInfo("11", "Can't Take my Eyes Off You", "Rock", "1967", "The Very best of Frankie Valli", "Frankie Valli", "3.23", "Warner Bros.", "108563", "1.10", "English", "9.3", "Good", "mp3"),
-                   new MusicInfo("12", "Stand by Me", "Alternative", "2016", "Songs From Final Fantasy XV", "Florence + The Machines", "4.06", "Sony", "250911", "1.00", "English", "8.9", "Good", "mp3"),
-                   new MusicInfo("13", "At Sea", "Alternative", "2007", "La La Land", "Wax Fang", "4.24", "Warner Bros.", "774231", "1.50", "English", "9.1", "Good", "mp3"),
-                   new MusicInfo("14", "Redbone", "Soul", "2016", "Awaken, My Love!", "Childish Gambino", "5.24", "Warner Bros.", "556731", "1.10", "English", "8.8", "Good", "mp3"),
-                   new MusicInfo("15", "Take Me to Church", "Alternative", "2013", "Hozier", "Hozier", "4.24", "Sony", "654532", "2.00", "English", "9.3", "Good", "mp3"),
-                   new MusicInfo("16", "Wheat Kings", "Rock", "2002", "Yer Favourites", "The Tragically Hip", "4.18", "Sony", "2010254", "1.75", "English", "9.6", "Good", "mp3")
-                   
-           //            new MusicInfo("C", "W", "c@example.com"),
-           //            new MusicInfo("D", "Y", "d@example.com"),
-           //            new MusicInfo("E", "V", "e@example.com")
+                   new MusicInfo("5", "Estoy Aqui", "Pop", "1995", "Pies Descalzos", "Shakira", "4.15", "Sony", "40799", "0.90", "Spanish", "8.9", "Good", "mp4"),
+                   new MusicInfo("6", "Aquarela", "MPB", "1983", "Acquarello", "Toquinho", "4.16", "Maracana", "5789", "0.75", "Portuguese", "7.7", "Fair", "wma"),
+                   new MusicInfo("7", "Stay", "Electronic", "2019", "Stay", "Alessia Cara, Zedd", "4.01", "Warner Bros.", "892046", "1.25", "English", "9.3", "Good", "mp4"),
+                   new MusicInfo("8", "Love Me Again", "Electronic", "2018", "John Newman", "John Newman", "3.55", "Sony", "46320", "1.25", "English", "6.7", "Poor", "mp3"),
+                   new MusicInfo("9", "Mom", "Country", "2014", "Man Against the Machine", "Garth Brooks", "4.22", "Warner Bros.", "882310", "1.25", "English", "9.9", "Good", "wma"),
+                   new MusicInfo("10", "Spring Waltz", "Waltz", "2019", "Spring Waltz", "Carla Bruni", "4.16", "Stone Music Entertainments", "109454", "1.25", "English", "9.0", "Excellent", "mp3"),
+                   new MusicInfo("11", "Everytime", "Indie Pop", "2017", "Roy Pablo", "Boy Pablo", "2.53", "777 Records", "36538989", "1.25", "English", "9.8", "Good", "mp3"),
+                   new MusicInfo("12", "Self Care", "Pop Rap", "2018", "Swimming", "Mac Miller", "5.45", "Warner Bros.", "141086145", "2.00", "English", "8.0", "Good", "Digital Download"),
+                   new MusicInfo("13", "Holiday", "Indie", "2019", "Thirsty", "The Black Skirts", "4.31", "YG Plus", "64576", "1.25", "Korean", "9.9", "Good", "Digital Download"),
+                   new MusicInfo("14", "I'm Not Sorry", "R&B", "2015", " I'm Not Sorrry", "DEAN feat. Eric Bellinger", "3.29", "Joombas Co Ltd & Universal Music Ltd.", "22021472", "1.50", "English", "9.4", "Fair", "Digital Download"),
+                   new MusicInfo("15", "Someone In The Crowd", "Musical", "2016", "La La Land OST", "Emma Stone, Callie Hernandez, Sonoya Mizuno & Jessica Rothe", "4.20", "Interscope Records", "68022926", "2.00", "English", "9.8", "Good", "Digital Download"),
+                   new MusicInfo("16", "Pinocchio", "Chanson", "1971", "Pinocchio", "Daniele Vidal", "3.11", "Seven Seas", "unknown", "20.52", "French", "7.5", "Poor", "LP"),
+                   new MusicInfo("17", "Perfect", "Pop", "2017", "divide", "Ed Sheeran", "4.23", "Asylum", "89,359", "2.5", "English", "9.8", "Good", "mp4"),
+                   new MusicInfo("18", "Castle on the Hill", "Pop", "2017", "divide", "Ed Sheeran", "4.21", "Asylum", "479,000", "2.0", "English", "9.6", "Fair", "mp3"),
+                   new MusicInfo("19", "Stay with Me", "Soul", "2014", "In the Lonely Hour", "Sam Smith", "2.52", "Capitol", "359,000", "2.5", "English", "8.5", "Good", "mp3"),
+                   new MusicInfo("20", "Dernière danse", "Pop", "2013", "Mini World", "Indila", "3.32", "Capitol Music Group", "897009", "2.50", "French", "8.0", "Good", "mp4"),
+                   new MusicInfo("21", "A Sky Full of Stars", "EDM", "2014", "Ghost Stories", "Coldplay", "3.32", "Parlophone", "654009", "1.50", "English", "7.0", "Fair", "mp3"),
+                   new MusicInfo("22", "The Boxer", "Pop", "1970", "Bridge Over Troubled Water", "Simon & Garfunkel", "5.13", "Sony", "1005435", "1.25", "English", "9.8", "Good", "mp3"),
+                   new MusicInfo("23", "Superboy and Supergirl", "Alternative", "2000", "New Standards", "Tullycraft", "2.31", "Sony", "13435", "1.00", "English", "8.4", "Good", "mp3"),
+                   new MusicInfo("24", "Can't Take my Eyes Off You", "Rock", "1967", "The Very best of Frankie Valli", "Frankie Valli", "3.23", "Warner Bros.", "108563", "1.10", "English", "9.3", "Good", "mp3"),
+                   new MusicInfo("25", "Stand by Me", "Alternative", "2016", "Songs From Final Fantasy XV", "Florence + The Machines", "4.06", "Sony", "250911", "1.00", "English", "8.9", "Good", "mp3"),
+                   new MusicInfo("26", "At Sea", "Alternative", "2007", "La La Land", "Wax Fang", "4.24", "Warner Bros.", "774231", "1.50", "English", "9.1", "Good", "mp3"),
+                   new MusicInfo("27", "Redbone", "Soul", "2016", "Awaken, My Love!", "Childish Gambino", "5.24", "Warner Bros.", "556731", "1.10", "English", "8.8", "Good", "mp3"),
+                   new MusicInfo("28", "Take Me to Church", "Alternative", "2013", "Hozier", "Hozier", "4.24", "Sony", "654532", "2.00", "English", "9.3", "Good", "mp3"),
+                   new MusicInfo("29", "Wheat Kings", "Rock", "2002", "Yer Favourites", "The Tragically Hip", "4.18", "Sony", "2010254", "1.75", "English", "9.6", "Good", "mp3")
            );
+
+//   FileOutputStream fout = new FileOutputStream("music.txt");
+//   ObjectOutputStream oos = new ObjectOutputStream(fout);
 
    protected TextField stID = new TextField();
    protected TextField stTitle = new TextField();
@@ -81,9 +98,13 @@ public class MainPage extends Application
    //protected Button btSave = new Button("Save");
    private TextField musicBox = new TextField();
 
+   static Stage classStage = new Stage();
+
    @Override
    public void start (Stage primaryStage)
    {
+
+      classStage = primaryStage;
 
       //Root pane
       BorderPane pane = new BorderPane();
@@ -309,6 +330,8 @@ public class MainPage extends Application
 
       music.getSelectionModel().selectedIndexProperty().addListener((num) -> displayData());
 
+
+
       Scene scene = new Scene(pane, 1400, 850);
 
       primaryStage.setTitle(
@@ -336,8 +359,10 @@ public class MainPage extends Application
 
          MusicInfo newMusicInfo = new MusicInfo(id, title, genre, year, album, artist, time, recordLabel, sales, price, language, rating, quality, fileExtension);
          data.add(newMusicInfo);
-
       }
+
+//      oos.writeObject(data);
+//      fout.close();
 
    }
 
@@ -411,7 +436,7 @@ public class MainPage extends Application
 
          Alert alert = new Alert(Alert.AlertType.ERROR);
          alert.setTitle("Error");
-         alert.setHeaderText("Must select feild to update");
+         alert.setHeaderText("Must select field to update");
          alert.show();
 
       }
@@ -458,6 +483,7 @@ public class MainPage extends Application
     */
    public static void main (String[] args)
    {
+//      java.io.File file = new java.io.File("musics.txt");
       launch(args);
    }
 
