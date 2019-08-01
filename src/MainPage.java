@@ -3,8 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
@@ -32,13 +40,19 @@ import javafx.stage.Stage;
 public class MainPage extends Application
 {
 
-   FileOutputStream fo;
-   FileInputStream fi;
-   ObjectOutputStream oo;
-   ObjectInputStream oi;
+//   File file;
+//   FileOutputStream fo;
+//   FileInputStream fi;
+//   ObjectOutputStream os;
+//   ObjectInputStream is;
+
+   static FileWriter writer;
+   static BufferedWriter bWriter;
+   static FileReader reader;
+   static BufferedReader bReader;
 
    private TableView<MusicInfo> music = new TableView<MusicInfo>();
-   private ObservableList<MusicInfo> data
+   private static ObservableList<MusicInfo> data
            = FXCollections.observableArrayList(
                    new MusicInfo("1", "God's Country", "Country", "2019", "God's Country", "Blake Shelton", "3.27", "Warner Bros.", "154000", "1.25", "English", "9.9", "Good", "mp3"),
                    new MusicInfo("2", "Entre Deux Mondes", "Pop", "2017", "Entre Deux Mondes", "Marc Dupre", "3.45", "L-A BE", "3400", "1.05", "French", "9.7", "Poor", "mp3"),
@@ -71,9 +85,6 @@ public class MainPage extends Application
                    new MusicInfo("29", "Wheat Kings", "Rock", "2002", "Yer Favourites", "The Tragically Hip", "4.18", "Sony", "2010254", "1.75", "English", "9.6", "Good", "mp3")
            );
 
-//   FileOutputStream fout = new FileOutputStream("music.txt");
-//   ObjectOutputStream oos = new ObjectOutputStream(fout);
-
    protected TextField stID = new TextField();
    protected TextField stTitle = new TextField();
    protected TextField stGenre = new TextField();
@@ -88,17 +99,85 @@ public class MainPage extends Application
    protected TextField stRating = new TextField();
    protected TextField stQuality = new TextField();
    protected TextField stFileExtension = new TextField();
-   //protected Button btExit = new Button("Exit");
+
    protected Button btSearch = new Button("Search");
    protected Button btAdd = new Button("Add");
-   //protected Button btEdit = new Button("Edit");
    protected Button btUpdate = new Button("Update");
    protected Button btDelete = new Button("Delete");
-//   protected Button btCancel = new Button("Cancel");
-   //protected Button btSave = new Button("Save");
+
    private TextField musicBox = new TextField();
 
+   int i = music.getSelectionModel().selectedIndexProperty().get();
+
    static Stage classStage = new Stage();
+
+   /**
+    * @param args the command line arguments
+    */
+   public static void main (String[] args)
+   {
+      launch(args);
+      //      ObservableList<MusicInfo> data
+      //              = FXCollections.observableArrayList();
+
+      try {
+         writeToTextFile("music.txt", data);
+      }
+      catch (IOException e) {
+         e.printStackTrace();
+      }
+
+
+      // Now, read the file into a new List<Student>
+      List<MusicInfo> inputMusic = null;
+      try {
+         inputMusic = readData("music.txt");
+      }
+      catch (IOException e) {
+         e.printStackTrace();
+      }
+
+      // Print out the student names
+      if (inputMusic != null) {
+         for (MusicInfo music : inputMusic) {
+            System.out.println(data.toString());
+         }
+      }
+
+//      launch(args);
+   }
+
+//writing file
+   private static void writeToTextFile (String musictxt, ObservableList<MusicInfo> data) throws IOException
+   {
+      writer = new FileWriter(musictxt);
+      bWriter = new BufferedWriter(writer);
+      for (MusicInfo musicInfo : data) {
+         bWriter.write(musicInfo.getId() + "," + musicInfo.getTitle() + "," + musicInfo.getGenre() + "," + musicInfo.getYear() + "," + musicInfo.getAlbum() + "," + musicInfo.getArtist() + "," + musicInfo.getTime() + "," + musicInfo.getRecordLabel() + "," + musicInfo.getSales() + "," + musicInfo.getPrice() + "," + musicInfo.getLanguage() + "," + musicInfo.getRating() + "," + musicInfo.getQuality() + "," + musicInfo.getFileExtension() + "\n");
+         bWriter.newLine();
+      }
+      bWriter.close();
+   }
+
+//reading file
+   private static List<MusicInfo> readData (String musictxt) throws IOException
+   {
+      File file = new File("music.txt");
+      List<MusicInfo> data = new ArrayList<>();
+
+      reader = new FileReader(file);
+      bReader = new BufferedReader(reader);
+
+
+      String infoLine;
+
+      while ((infoLine = bReader.readLine()) != null) {
+         String[] info = infoLine.split(",");
+
+         data.add(new MusicInfo(info[0], info[1], info[2], info[3], info[4], info[5], info[6], info[7], info[8], info[9], info[10], info[11], info[12], info[13]));
+      }
+      return data;
+   }
 
    @Override
    public void start (Stage primaryStage)
@@ -241,9 +320,6 @@ public class MainPage extends Application
 
       btAdd.setMaxWidth(Double.MAX_VALUE);
       btSearch.setMaxWidth(Double.MAX_VALUE);
-      //btEdit.setMaxWidth(Double.MAX_VALUE);
-      //btSave.setMaxWidth(Double.MAX_VALUE);
-      //btExit.setMaxWidth(Double.MAX_VALUE);
       btUpdate.setMaxWidth(Double.MAX_VALUE);
       btDelete.setMaxWidth(Double.MAX_VALUE);
 //end  of gridPane
@@ -306,10 +382,6 @@ public class MainPage extends Application
       music.setItems(data);
       music.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7, column8, column9, column10, column11, column12, column13, column14);
 
-
-//      tableView.getItems().add(new MusicInfo(1, ""));
-//      tableView.getItems().add(new MusicInfo("Jane", "Deer"));
-
       VBox tableV = new VBox(music);
 
       tableV.setMaxSize(900, 900);
@@ -322,6 +394,8 @@ public class MainPage extends Application
 
 
       BorderPane.setMargin(tableV, new Insets(200, 10, 10, 30));
+
+      //actions of the 
 
       btAdd.setOnAction(e -> addMusicInfo(stID.getText(), stTitle.getText(), stGenre.getText(), stYear.getText(), stAlbum.getText(), stArtist.getText(), stTime.getText(), stRecordLabel.getText(), stSales.getText(), stPrice.getText(), stLanguage.getText(), stRating.getText(), stQuality.getText(), stFileExtension.getText()));
       btUpdate.setOnAction(e -> updateData(stID.getText(), stTitle.getText(), stGenre.getText(), stYear.getText(), stAlbum.getText(), stArtist.getText(), stTime.getText(), stRecordLabel.getText(), stSales.getText(), stPrice.getText(), stLanguage.getText(), stRating.getText(), stQuality.getText(), stFileExtension.getText()));
@@ -359,6 +433,14 @@ public class MainPage extends Application
 
          MusicInfo newMusicInfo = new MusicInfo(id, title, genre, year, album, artist, time, recordLabel, sales, price, language, rating, quality, fileExtension);
          data.add(newMusicInfo);
+
+
+//         writToTextFile()
+//         bWriter.append(newMusicInfo);
+
+//         FileManager.Write((ArrayList<MusicInfo>) data);
+//         FileIO.Write(p);
+
       }
 
 //      oos.writeObject(data);
@@ -481,10 +563,5 @@ public class MainPage extends Application
    /**
     * @param args the command line arguments
     */
-   public static void main (String[] args)
-   {
-//      java.io.File file = new java.io.File("musics.txt");
-      launch(args);
-   }
 
 }
