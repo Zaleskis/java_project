@@ -107,8 +107,6 @@ public class MainPage extends Application
 
    private TextField musicBox = new TextField();
 
-   int i = music.getSelectionModel().selectedIndexProperty().get();
-
    static Stage classStage = new Stage();
 
    /**
