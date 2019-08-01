@@ -55,7 +55,14 @@ public class MainPage extends Application
                    new MusicInfo("19", "Stay with Me", "Soul", "2014", "In the Lonely Hour", "Sam Smith", "2.52", "Capitol", "359,000", "2.5", "English", "8.5", "Good", "mp3"),
                    new MusicInfo("20", "Dernière danse", "Pop", "2013", "Mini World", "Indila", "3.32","Capitol Music Group", "897009", "2.50", "French", "8.0", "Good", "mp4"),
                    new MusicInfo("21", "A Sky Full of Stars", "EDM", "2014", "Ghost Stories", "Coldplay", "3.32","Parlophone", "654009", "1.50", "English", "7.0", "Fair", "mp3")
-
+                   new MusicInfo("22", "The Boxer", "Pop", "1970", "Bridge Over Troubled Water", "Simon & Garfunkel", "5.13", "Sony", "1005435", "1.25", "English", "9.8", "Good", "mp3"),
+                   new MusicInfo("23", "Superboy and Supergirl", "Alternative", "2000", "New Standards", "Tullycraft", "2.31", "Sony", "13435", "1.00", "English", "8.4", "Good", "mp3"),
+                   new MusicInfo("24", "Can't Take my Eyes Off You", "Rock", "1967", "The Very best of Frankie Valli", "Frankie Valli", "3.23", "Warner Bros.", "108563", "1.10", "English", "9.3", "Good", "mp3"),
+                   new MusicInfo("25", "Stand by Me", "Alternative", "2016", "Songs From Final Fantasy XV", "Florence + The Machines", "4.06", "Sony", "250911", "1.00", "English", "8.9", "Good", "mp3"),
+                   new MusicInfo("26", "At Sea", "Alternative", "2007", "La La Land", "Wax Fang", "4.24", "Warner Bros.", "774231", "1.50", "English", "9.1", "Good", "mp3"),
+                   new MusicInfo("27", "Redbone", "Soul", "2016", "Awaken, My Love!", "Childish Gambino", "5.24", "Warner Bros.", "556731", "1.10", "English", "8.8", "Good", "mp3"),
+                   new MusicInfo("28", "Take Me to Church", "Alternative", "2013", "Hozier", "Hozier", "4.24", "Sony", "654532", "2.00", "English", "9.3", "Good", "mp3"),
+                   new MusicInfo("29", "Wheat Kings", "Rock", "2002", "Yer Favourites", "The Tragically Hip", "4.18", "Sony", "2010254", "1.75", "English", "9.6", "Good", "mp3")
            );
 
    protected TextField stID = new TextField();
