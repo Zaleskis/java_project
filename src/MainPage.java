@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.io.*;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +11,7 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -23,13 +25,17 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.scene.control.Alert;
 /**
  *
  * @author Hailey
  */
 public class MainPage extends Application
 {
+
+   FileOutputStream fo;
+   FileInputStream fi;
+   ObjectOutputStream oo;
+   ObjectInputStream oi;
 
    private TableView<MusicInfo> music = new TableView<MusicInfo>();
    private ObservableList<MusicInfo> data
@@ -42,7 +48,7 @@ public class MainPage extends Application
                    new MusicInfo("6", "Aquarela", "MPB", "1983", "Acquarello", "Toquinho", "4.16", "Maracana", "5789", "0.75", "Portuguese", "7.7", "Fair", "wma"),
                    new MusicInfo("7", "Stay", "Electronic", "2019", "Stay", "Alessia Cara, Zedd", "4.01", "Warner Bros.", "892046", "1.25", "English", "9.3", "Good", "mp4"),
                    new MusicInfo("8", "Love Me Again", "Electronic", "2018", "John Newman", "John Newman", "3.55", "Sony", "46320", "1.25", "English", "6.7", "Poor", "mp3"),
-                   new MusicInfo("9", "Mom", "Country", "2014", "Man Against the Machine", "Garth Brooks", "4.22", "Warner Bros.", "882310", "1.25", "English", "9.9", "Good", "wma")
+                   new MusicInfo("9", "Mom", "Country", "2014", "Man Against the Machine", "Garth Brooks", "4.22", "Warner Bros.", "882310", "1.25", "English", "9.9", "Good", "wma"),
                    new MusicInfo("10", "Spring Waltz", "Waltz", "2019", "Spring Waltz", "Carla Bruni", "4.16", "Stone Music Entertainments", "109454", "1.25", "English", "9.0", "Excellent", "mp3"),
                    new MusicInfo("11", "Everytime", "Indie Pop", "2017", "Roy Pablo", "Boy Pablo", "2.53", "777 Records", "36538989", "1.25", "English", "9.8", "Good", "mp3"),
                    new MusicInfo("12", "Self Care", "Pop Rap", "2018", "Swimming", "Mac Miller", "5.45", "Warner Bros.", "141086145", "2.00", "English", "8.0", "Good", "Digital Download"),
@@ -53,8 +59,8 @@ public class MainPage extends Application
                    new MusicInfo("17", "Perfect", "Pop", "2017", "divide", "Ed Sheeran", "4.23", "Asylum", "89,359", "2.5", "English", "9.8", "Good", "mp4"),
                    new MusicInfo("18", "Castle on the Hill", "Pop", "2017", "divide", "Ed Sheeran", "4.21", "Asylum", "479,000", "2.0", "English", "9.6", "Fair", "mp3"),
                    new MusicInfo("19", "Stay with Me", "Soul", "2014", "In the Lonely Hour", "Sam Smith", "2.52", "Capitol", "359,000", "2.5", "English", "8.5", "Good", "mp3"),
-                   new MusicInfo("20", "Dernière danse", "Pop", "2013", "Mini World", "Indila", "3.32","Capitol Music Group", "897009", "2.50", "French", "8.0", "Good", "mp4"),
-                   new MusicInfo("21", "A Sky Full of Stars", "EDM", "2014", "Ghost Stories", "Coldplay", "3.32","Parlophone", "654009", "1.50", "English", "7.0", "Fair", "mp3")
+                   new MusicInfo("20", "Dernière danse", "Pop", "2013", "Mini World", "Indila", "3.32", "Capitol Music Group", "897009", "2.50", "French", "8.0", "Good", "mp4"),
+                   new MusicInfo("21", "A Sky Full of Stars", "EDM", "2014", "Ghost Stories", "Coldplay", "3.32", "Parlophone", "654009", "1.50", "English", "7.0", "Fair", "mp3"),
                    new MusicInfo("22", "The Boxer", "Pop", "1970", "Bridge Over Troubled Water", "Simon & Garfunkel", "5.13", "Sony", "1005435", "1.25", "English", "9.8", "Good", "mp3"),
                    new MusicInfo("23", "Superboy and Supergirl", "Alternative", "2000", "New Standards", "Tullycraft", "2.31", "Sony", "13435", "1.00", "English", "8.4", "Good", "mp3"),
                    new MusicInfo("24", "Can't Take my Eyes Off You", "Rock", "1967", "The Very best of Frankie Valli", "Frankie Valli", "3.23", "Warner Bros.", "108563", "1.10", "English", "9.3", "Good", "mp3"),
@@ -64,6 +70,9 @@ public class MainPage extends Application
                    new MusicInfo("28", "Take Me to Church", "Alternative", "2013", "Hozier", "Hozier", "4.24", "Sony", "654532", "2.00", "English", "9.3", "Good", "mp3"),
                    new MusicInfo("29", "Wheat Kings", "Rock", "2002", "Yer Favourites", "The Tragically Hip", "4.18", "Sony", "2010254", "1.75", "English", "9.6", "Good", "mp3")
            );
+
+//   FileOutputStream fout = new FileOutputStream("music.txt");
+//   ObjectOutputStream oos = new ObjectOutputStream(fout);
 
    protected TextField stID = new TextField();
    protected TextField stTitle = new TextField();
@@ -89,9 +98,13 @@ public class MainPage extends Application
    //protected Button btSave = new Button("Save");
    private TextField musicBox = new TextField();
 
+   static Stage classStage = new Stage();
+
    @Override
    public void start (Stage primaryStage)
    {
+
+      classStage = primaryStage;
 
       //Root pane
       BorderPane pane = new BorderPane();
@@ -306,17 +319,19 @@ public class MainPage extends Application
       pane.setRight(gridPaneR);
       pane.setTop(topHeader);
       pane.setLeft(tableV);
-      
+
 
       BorderPane.setMargin(tableV, new Insets(200, 10, 10, 30));
-      
+
       btAdd.setOnAction(e -> addMusicInfo(stID.getText(), stTitle.getText(), stGenre.getText(), stYear.getText(), stAlbum.getText(), stArtist.getText(), stTime.getText(), stRecordLabel.getText(), stSales.getText(), stPrice.getText(), stLanguage.getText(), stRating.getText(), stQuality.getText(), stFileExtension.getText()));
       btUpdate.setOnAction(e -> updateData(stID.getText(), stTitle.getText(), stGenre.getText(), stYear.getText(), stAlbum.getText(), stArtist.getText(), stTime.getText(), stRecordLabel.getText(), stSales.getText(), stPrice.getText(), stLanguage.getText(), stRating.getText(), stQuality.getText(), stFileExtension.getText()));
       btSearch.setOnAction(e -> searchData(stTitle.getText()));
       btDelete.setOnAction(e -> deleteMusicInfo());
-      
+
       music.getSelectionModel().selectedIndexProperty().addListener((num) -> displayData());
-      
+
+
+
       Scene scene = new Scene(pane, 1400, 850);
 
       primaryStage.setTitle(
@@ -324,133 +339,142 @@ public class MainPage extends Application
       primaryStage.setScene(scene);
 
       primaryStage.show();
-      
-   }  
-   
-   
-   
-   public void addMusicInfo(String id, String title, String genre, String year, String album, String artist, String time, String recordLabel, String sales, String price, String language, String rating, String quality, String fileExtension) {
-       
-       if (id.isEmpty() && title.isEmpty() && genre.isEmpty() && year.isEmpty() && album.isEmpty() && artist.isEmpty() && time.isEmpty() && recordLabel.isEmpty() && sales.isEmpty() && price.isEmpty() && language.isEmpty() && rating.isEmpty() && quality.isEmpty() && fileExtension.isEmpty()) {
-       
-           Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Must enter information to add a song");
-            alert.show();
-       
-       } else {
-           
-           MusicInfo newMusicInfo = new MusicInfo(id, title, genre, year, album, artist, time, recordLabel, sales, price, language, rating, quality, fileExtension);
-           data.add(newMusicInfo);
-           
-       }
-       
-   }
-   
-   
-   public void searchData(String title) {
-       
-       boolean songFound = false;
-       
-       for (int i = 0; i < data.size(); i++) {
-           
-           if (data.get(i).getTitle().equals(title)) {
-               
-               stID.setText(data.get(i).getId());
-               stGenre.setText(data.get(i).getGenre());
-               stYear.setText(data.get(i).getYear());
-               stAlbum.setText(data.get(i).getAlbum());
-               stArtist.setText(data.get(i).getArtist());
-               stTime.setText(data.get(i).getTime());
-               stRecordLabel.setText(data.get(i).getRecordLabel());
-               stSales.setText(data.get(i).getSales());
-               stPrice.setText(data.get(i).getPrice());
-               stLanguage.setText(data.get(i).getLanguage());
-               stRating.setText(data.get(i).getRating());
-               stQuality.setText(data.get(i).getQuality());
-               stFileExtension.setText(data.get(i).getFileExtension());
-               
-               songFound = true;
-               
-           }
-           
-       }
-       
-       if (songFound == false) {
-           
-           Alert alert = new Alert(Alert.AlertType.ERROR);
-               alert.setTitle("Error");
-               alert.setHeaderText("Song title was not found");
-               alert.setContentText("Enter song title that is on the database");
-               alert.show();
-           
-       }
-       
-   }
-   
-   
-   public void updateData(String id, String title, String genre, String year, String album, String artist, String time, String recordLabel, String sales, String price, String language, String rating, String quality, String fileExtension) {
-       
-        int i = music.getSelectionModel().selectedIndexProperty().get();
-             
-        try {
-            data.get(i).setTitle(title);
-            //ID is unchangable 
-            data.get(i).setGenre(genre);
-            data.get(i).setYear(year);
-            data.get(i).setAlbum(album);
-            data.get(i).setArtist(artist);
-            data.get(i).setTime(time);
-            data.get(i).setRecordLabel(recordLabel);
-            data.get(i).setSales(sales);
-            data.get(i).setPrice(price);
-            data.get(i).setLanguage(language);
-            data.get(i).setRating(rating);
-            data.get(i).setQuality(quality);
-            data.get(i).setFileExtension(fileExtension);
-
-            data.set(i, data.get(i));  
-        } catch (Exception ex) {
-            
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Must select field to update");
-            alert.show();
-            
-        }
-       
-   }
-   
-   
-   public void deleteMusicInfo() {
-       
-       int i = music.getSelectionModel().selectedIndexProperty().get();
-      
-               
-       data.remove(i);
 
    }
-   
-   public void displayData() {
-       
-       int i = music.getSelectionModel().selectedIndexProperty().get();
-       
-        stTitle.setText(data.get(i).getTitle());
-        stID.setText(data.get(i).getId());
-        stGenre.setText(data.get(i).getGenre());
-        stYear.setText(data.get(i).getYear());
-        stAlbum.setText(data.get(i).getAlbum());
-        stArtist.setText(data.get(i).getArtist());
-        stTime.setText(data.get(i).getTime());
-        stRecordLabel.setText(data.get(i).getRecordLabel());
-        stSales.setText(data.get(i).getSales());
-        stPrice.setText(data.get(i).getPrice());
-        stLanguage.setText(data.get(i).getLanguage());
-        stRating.setText(data.get(i).getRating());
-        stQuality.setText(data.get(i).getQuality());
-        stFileExtension.setText(data.get(i).getFileExtension());
-       
-       
+
+
+
+   public void addMusicInfo (String id, String title, String genre, String year, String album, String artist, String time, String recordLabel, String sales, String price, String language, String rating, String quality, String fileExtension)
+   {
+
+      if (id.isEmpty() && title.isEmpty() && genre.isEmpty() && year.isEmpty() && album.isEmpty() && artist.isEmpty() && time.isEmpty() && recordLabel.isEmpty() && sales.isEmpty() && price.isEmpty() && language.isEmpty() && rating.isEmpty() && quality.isEmpty() && fileExtension.isEmpty()) {
+
+         Alert alert = new Alert(Alert.AlertType.ERROR);
+         alert.setTitle("Error");
+         alert.setHeaderText("Must enter information to add a song");
+         alert.show();
+
+      }
+      else {
+
+         MusicInfo newMusicInfo = new MusicInfo(id, title, genre, year, album, artist, time, recordLabel, sales, price, language, rating, quality, fileExtension);
+         data.add(newMusicInfo);
+      }
+
+//      oos.writeObject(data);
+//      fout.close();
+
+   }
+
+
+   public void searchData (String title)
+   {
+
+      boolean songFound = false;
+
+      for (int i = 0; i < data.size(); i++) {
+
+         if (data.get(i).getTitle().equals(title)) {
+
+            stID.setText(data.get(i).getId());
+            stGenre.setText(data.get(i).getGenre());
+            stYear.setText(data.get(i).getYear());
+            stAlbum.setText(data.get(i).getAlbum());
+            stArtist.setText(data.get(i).getArtist());
+            stTime.setText(data.get(i).getTime());
+            stRecordLabel.setText(data.get(i).getRecordLabel());
+            stSales.setText(data.get(i).getSales());
+            stPrice.setText(data.get(i).getPrice());
+            stLanguage.setText(data.get(i).getLanguage());
+            stRating.setText(data.get(i).getRating());
+            stQuality.setText(data.get(i).getQuality());
+            stFileExtension.setText(data.get(i).getFileExtension());
+
+            songFound = true;
+
+         }
+
+      }
+
+      if (songFound == false) {
+
+         Alert alert = new Alert(Alert.AlertType.ERROR);
+         alert.setTitle("Error");
+         alert.setHeaderText("Song title was not found");
+         alert.setContentText("Enter song title that is on the database");
+         alert.show();
+
+      }
+
+   }
+
+
+   public void updateData (String id, String title, String genre, String year, String album, String artist, String time, String recordLabel, String sales, String price, String language, String rating, String quality, String fileExtension)
+   {
+
+      int i = music.getSelectionModel().selectedIndexProperty().get();
+
+      try {
+         data.get(i).setTitle(title);
+         //ID is unchangable 
+         data.get(i).setGenre(genre);
+         data.get(i).setYear(year);
+         data.get(i).setAlbum(album);
+         data.get(i).setArtist(artist);
+         data.get(i).setTime(time);
+         data.get(i).setRecordLabel(recordLabel);
+         data.get(i).setSales(sales);
+         data.get(i).setPrice(price);
+         data.get(i).setLanguage(language);
+         data.get(i).setRating(rating);
+         data.get(i).setQuality(quality);
+         data.get(i).setFileExtension(fileExtension);
+
+         data.set(i, data.get(i));
+      }
+      catch (Exception ex) {
+
+         Alert alert = new Alert(Alert.AlertType.ERROR);
+         alert.setTitle("Error");
+         alert.setHeaderText("Must select field to update");
+         alert.show();
+
+      }
+
+   }
+
+
+   public void deleteMusicInfo ()
+   {
+
+      int i = music.getSelectionModel().selectedIndexProperty().get();
+
+
+      data.remove(i);
+
+   }
+
+   public void displayData ()
+   {
+
+      int i = music.getSelectionModel().selectedIndexProperty().get();
+
+      stTitle.setText(data.get(i).getTitle());
+      stID.setText(data.get(i).getId());
+      stGenre.setText(data.get(i).getGenre());
+      stYear.setText(data.get(i).getYear());
+      stAlbum.setText(data.get(i).getAlbum());
+      stArtist.setText(data.get(i).getArtist());
+      stTime.setText(data.get(i).getTime());
+      stRecordLabel.setText(data.get(i).getRecordLabel());
+      stSales.setText(data.get(i).getSales());
+      stPrice.setText(data.get(i).getPrice());
+      stLanguage.setText(data.get(i).getLanguage());
+      stRating.setText(data.get(i).getRating());
+      stQuality.setText(data.get(i).getQuality());
+      stFileExtension.setText(data.get(i).getFileExtension());
+
+
    }
 
 
@@ -459,6 +483,7 @@ public class MainPage extends Application
     */
    public static void main (String[] args)
    {
+//      java.io.File file = new java.io.File("musics.txt");
       launch(args);
    }
 
