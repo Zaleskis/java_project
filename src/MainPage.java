@@ -40,12 +40,6 @@ import javafx.stage.Stage;
 public class MainPage extends Application
 {
 
-//   File file;
-//   FileOutputStream fo;
-//   FileInputStream fi;
-//   ObjectOutputStream os;
-//   ObjectInputStream is;
-
    static FileWriter writer;
    static BufferedWriter bWriter;
    static FileReader reader;
@@ -109,14 +103,9 @@ public class MainPage extends Application
 
    static Stage classStage = new Stage();
 
-   /**
-    * @param args the command line arguments
-    */
    public static void main (String[] args)
    {
       launch(args);
-      //      ObservableList<MusicInfo> data
-      //              = FXCollections.observableArrayList();
 
       try {
          writeToTextFile("music.txt", data);
@@ -126,7 +115,7 @@ public class MainPage extends Application
       }
 
 
-      // Now, read the file into a new List<Student>
+      // Now, read the file into a new List<MusicInfo>
       List<MusicInfo> inputMusic = null;
       try {
          inputMusic = readData("music.txt");
@@ -141,8 +130,6 @@ public class MainPage extends Application
             System.out.println(data.toString());
          }
       }
-
-//      launch(args);
    }
 
 //writing file
@@ -188,7 +175,7 @@ public class MainPage extends Application
 
 
       //**right column with gridpane
-
+      
       GridPane gridPaneR = new GridPane();
       gridPaneR.setPadding(new Insets(100, 30, 60, 30));
       gridPaneR.setHgap(2);
@@ -303,11 +290,7 @@ public class MainPage extends Application
       gridPaneR.add(btAdd, 0, 15);
       gridPaneR.add(btSearch, 1, 15);
       gridPaneR.add(btUpdate, 0, 16);
-      //gridPaneR.add(btEdit, 0, 16);
-      //gridPaneR.add(btSave, 1, 16);
       gridPaneR.add(btDelete, 1, 16);
-      //gridPaneR.add(btExit, 1, 17);
-
 
       gridPaneR.setMaxWidth(500);
 
@@ -320,7 +303,7 @@ public class MainPage extends Application
       btSearch.setMaxWidth(Double.MAX_VALUE);
       btUpdate.setMaxWidth(Double.MAX_VALUE);
       btDelete.setMaxWidth(Double.MAX_VALUE);
-//end  of gridPane
+      //end  of gridPane
 
       //**top column
       FlowPane topHeader = new FlowPane();
@@ -393,13 +376,13 @@ public class MainPage extends Application
 
       BorderPane.setMargin(tableV, new Insets(200, 10, 10, 30));
 
-      //actions of the 
-
+      //actions of the buttons
       btAdd.setOnAction(e -> addMusicInfo(stID.getText(), stTitle.getText(), stGenre.getText(), stYear.getText(), stAlbum.getText(), stArtist.getText(), stTime.getText(), stRecordLabel.getText(), stSales.getText(), stPrice.getText(), stLanguage.getText(), stRating.getText(), stQuality.getText(), stFileExtension.getText()));
       btUpdate.setOnAction(e -> updateData(stID.getText(), stTitle.getText(), stGenre.getText(), stYear.getText(), stAlbum.getText(), stArtist.getText(), stTime.getText(), stRecordLabel.getText(), stSales.getText(), stPrice.getText(), stLanguage.getText(), stRating.getText(), stQuality.getText(), stFileExtension.getText()));
       btSearch.setOnAction(e -> searchData(stTitle.getText()));
       btDelete.setOnAction(e -> deleteMusicInfo());
 
+      //selected from the tableview
       music.getSelectionModel().selectedIndexProperty().addListener((num) -> displayData());
 
 
@@ -431,19 +414,7 @@ public class MainPage extends Application
 
          MusicInfo newMusicInfo = new MusicInfo(id, title, genre, year, album, artist, time, recordLabel, sales, price, language, rating, quality, fileExtension);
          data.add(newMusicInfo);
-
-
-//         writToTextFile()
-//         bWriter.append(newMusicInfo);
-
-//         FileManager.Write((ArrayList<MusicInfo>) data);
-//         FileIO.Write(p);
-
       }
-
-//      oos.writeObject(data);
-//      fout.close();
-
    }
 
 
@@ -518,9 +489,7 @@ public class MainPage extends Application
          alert.setTitle("Error");
          alert.setHeaderText("Must select field to update");
          alert.show();
-
       }
-
    }
 
 
@@ -553,13 +522,5 @@ public class MainPage extends Application
       stRating.setText(data.get(i).getRating());
       stQuality.setText(data.get(i).getQuality());
       stFileExtension.setText(data.get(i).getFileExtension());
-
-
    }
-
-
-   /**
-    * @param args the command line arguments
-    */
-
 }
