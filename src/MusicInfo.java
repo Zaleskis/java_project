@@ -1,6 +1,4 @@
-/**
- * @author Rich Smith at ZenOfProgramming.com
- */
+//@author Administrator
 public class MusicInfo
 {
    private String id;
@@ -40,116 +38,144 @@ public class MusicInfo
       this.fileExtension = fileExtension;
    }
 
-    public String getId() {
-        return id;
-    }
+   public String getId ()
+   {
+      return id;
+   }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+   public void setId (String id)
+   {
+      this.id = id;
+   }
 
-    public String getTitle() {
-        return title;
-    }
+   public String getTitle ()
+   {
+      return title;
+   }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+   public void setTitle (String title)
+   {
+      this.title = title;
+   }
 
-    public String getGenre() {
-        return genre;
-    }
+   public String getGenre ()
+   {
+      return genre;
+   }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
+   public void setGenre (String genre)
+   {
+      this.genre = genre;
+   }
 
-    public String getYear() {
-        return year;
-    }
+   public String getYear ()
+   {
+      return year;
+   }
 
-    public void setYear(String year) {
-        this.year = year;
-    }
+   public void setYear (String year)
+   {
+      this.year = year;
+   }
 
-    public String getAlbum() {
-        return album;
-    }
+   public String getAlbum ()
+   {
+      return album;
+   }
 
-    public void setAlbum(String album) {
-        this.album = album;
-    }
+   public void setAlbum (String album)
+   {
+      this.album = album;
+   }
 
-    public String getArtist() {
-        return artist;
-    }
+   public String getArtist ()
+   {
+      return artist;
+   }
 
-    public void setArtist(String artist) {
-        this.artist = artist;
-    }
+   public void setArtist (String artist)
+   {
+      this.artist = artist;
+   }
 
-    public String getTime() {
-        return time;
-    }
+   public String getTime ()
+   {
+      return time;
+   }
 
-    public void setTime(String time) {
-        this.time = time;
-    }
+   public void setTime (String time)
+   {
+      this.time = time;
+   }
 
-    public String getRecordLabel() {
-        return recordLabel;
-    }
+   public String getRecordLabel ()
+   {
+      return recordLabel;
+   }
 
-    public void setRecordLabel(String recordLabel) {
-        this.recordLabel = recordLabel;
-    }
+   public void setRecordLabel (String recordLabel)
+   {
+      this.recordLabel = recordLabel;
+   }
 
-    public String getSales() {
-        return sales;
-    }
+   public String getSales ()
+   {
+      return sales;
+   }
 
-    public void setSales(String sales) {
-        this.sales = sales;
-    }
+   public void setSales (String sales)
+   {
+      this.sales = sales;
+   }
 
-    public String getPrice() {
-        return price;
-    }
+   public String getPrice ()
+   {
+      return price;
+   }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
+   public void setPrice (String price)
+   {
+      this.price = price;
+   }
 
-    public String getLanguage() {
-        return language;
-    }
+   public String getLanguage ()
+   {
+      return language;
+   }
 
-    public void setLanguage(String language) {
-        this.language = language;
-    }
+   public void setLanguage (String language)
+   {
+      this.language = language;
+   }
 
-    public String getRating() {
-        return rating;
-    }
+   public String getRating ()
+   {
+      return rating;
+   }
 
-    public void setRating(String rating) {
-        this.rating = rating;
-    }
+   public void setRating (String rating)
+   {
+      this.rating = rating;
+   }
 
-    public String getQuality() {
-        return quality;
-    }
+   public String getQuality ()
+   {
+      return quality;
+   }
 
-    public void setQuality(String quality) {
-        this.quality = quality;
-    }
+   public void setQuality (String quality)
+   {
+      this.quality = quality;
+   }
 
-    public String getFileExtension() {
-        return fileExtension;
-    }
+   public String getFileExtension ()
+   {
+      return fileExtension;
+   }
 
-    public void setFileExtension(String fileExtension) {
-        this.fileExtension = fileExtension;
-    }
+   public void setFileExtension (String fileExtension)
+   {
+      this.fileExtension = fileExtension;
+   }
 
 }
